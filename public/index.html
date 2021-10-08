@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Egui Crossplatform Tests</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+        <link type="text/css" rel="stylesheet" href="./style.css"/>
+
+        <script>
+            let CRATE_NAME_SNAKE = "egui_crossplatform_tests";
+        </script>
+
+        <script>
+            window.addEventListener("load", () => {
+                "use strict";
+
+                if("serviceWorker" in navigator) {
+                    navigator.serviceWorker.register("./sw.js");
+                } else alert("serviceWorker is not supported!\nTry updating your browser.");
+            });
+        </script>
+    </head>
+    <body>
+        <canvas id="canvas"></canvas>
+
+        <script>
+            delete WebAssembly.instantiateStreaming;
+        </script>
+        <!-- manual folder change required here -->
+        <script src="./egui_crossplatform_tests.js"></script>
+        <script>
+            wasm_bindgen(`./${CRATE_NAME_SNAKE}_bg.wasm`).then(() => {
+                wasm_bindgen.start("canvas");
+            })["catch"](console.error);
+        </script>
+    </body>
+</html>

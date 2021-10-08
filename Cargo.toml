@@ -1,0 +1,19 @@
+[package]
+name = "egui-crossplatform-tests"
+version = "0.0.0"
+authors = ["runner"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+eframe = "0.14.0"
+serde = {version = "1", features = ["derive"], optional = true}
+
+[features]
+default = []
+persistence = ["eframe/persistence", "serde"]
+
+[profile.release]
+opt-level = 2

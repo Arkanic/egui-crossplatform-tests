@@ -9,16 +9,6 @@
         <script>
             let CRATE_NAME_SNAKE = "egui_crossplatform_tests";
         </script>
-
-        <script>
-            window.addEventListener("load", () => {
-                "use strict";
-
-                if("serviceWorker" in navigator) {
-                    navigator.serviceWorker.register("./sw.js");
-                } else alert("serviceWorker is not supported!\nTry updating your browser.");
-            });
-        </script>
     </head>
     <body>
         <canvas id="canvas"></canvas>
